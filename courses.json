@@ -1,0 +1,22 @@
+[ {
+  "id" : 1,
+  "name" : "Spring Boot Basics",
+  "description" : "Build REST APIs with Java and Spring Boot.",
+  "target_date" : "2026-12-31",
+  "status" : "In Progress",
+  "created_at" : "2026-11-25T18:20:00Z"
+}, {
+  "id" : 2,
+  "name" : "Introduction to Git",
+  "description" : "Learn commits, branches, and collaborative workflows.",
+  "target_date" : "2027-01-15",
+  "status" : "Not Started",
+  "created_at" : "2026-11-25T18:25:00Z"
+}, {
+  "id" : 3,
+  "name" : "Java Fundamentals",
+  "description" : "Learn core Java concepts",
+  "target_date" : "2027-02-01",
+  "status" : "Not Started",
+  "created_at" : "2026-11-25T18:27:09.160524800Z"
+} ]
