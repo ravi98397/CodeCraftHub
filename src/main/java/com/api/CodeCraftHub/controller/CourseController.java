@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * HTTP endpoints for creating, viewing, editing, and deleting courses.
@@ -39,9 +40,28 @@ public class CourseController {
         return courseService.getAllCourses();
     }
 
+    @GetMapping("/stats")
+    public Map<String, Object> getCourseStats() {
+        List<Course> courses = courseService.getAllCourses();
+        Map<String, Long> coursesByStatus = Map.of(
+                "Not Started", countCoursesWithStatus(courses, "Not Started"),
+                "In Progress", countCoursesWithStatus(courses, "In Progress"),
+                "Completed", countCoursesWithStatus(courses, "Completed"));
+
+        return Map.of(
+                "totalCourses", courses.size(),
+                "coursesByStatus", coursesByStatus);
+    }
+
     @GetMapping("/{id}")
     public Course getCourse(@PathVariable long id) {
         return courseService.getCourseById(id);
+    }
+
+    private long countCoursesWithStatus(List<Course> courses, String status) {
+        return courses.stream()
+                .filter(course -> status.equals(course.getStatus()))
+                .count();
     }
 
     @PutMapping("/{id}")

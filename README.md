@@ -78,6 +78,7 @@ All endpoints use the `/api/courses` path. Send and receive JSON. A course has t
 |---|---|---|---|
 | `POST` | `/api/courses` | Add a course | `201 Created` with the created course |
 | `GET` | `/api/courses` | Get all courses | `200 OK` with an array |
+| `GET` | `/api/courses/stats` | Get total courses and counts by status | `200 OK` with statistics |
 | `GET` | `/api/courses/{id}` | Get one course | `200 OK` with the course |
 | `PUT` | `/api/courses/{id}` | Replace a course's editable fields (send all required fields) | `200 OK` with the updated course |
 | `PATCH` | `/api/courses/{id}` | Update only the provided fields | `200 OK` with the updated course |
@@ -109,6 +110,20 @@ Example response:
 ```powershell
 curl.exe http://localhost:8080/api/courses
 curl.exe http://localhost:8080/api/courses/1
+curl.exe http://localhost:8080/api/courses/stats
+```
+
+The statistics endpoint returns all three status counts, including zero counts:
+
+```json
+{
+  "totalCourses": 2,
+  "coursesByStatus": {
+    "Not Started": 1,
+    "In Progress": 1,
+    "Completed": 0
+  }
+}
 ```
 
 ### Update a course
